@@ -1,6 +1,6 @@
 {
   "name": "ejecutaweb",
-  "homepage": "https://JoeCueva.github.io/EJECUTA_CONSTRUCCION/",
+  "homepage": "https://JoeCueva.github.io/Ejecuta",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages --dist dist --branch gh-pages --repo https://github.com/JoeCueva/EJECUTA_CONSTRUCCION.git"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

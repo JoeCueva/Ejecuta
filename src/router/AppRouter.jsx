@@ -19,7 +19,7 @@ import ScrollToTop from "../utils/ScrollToTop";
 
 const AppRouter = () => {
     return (
-        <BrowserRouter basename="/EJECUTA_CONSTRUCCION">
+        <BrowserRouter basename="/Ejecuta">
             <ScrollToTop />
             <Navbar />
             <Routes>
