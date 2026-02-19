@@ -1,0 +1,293 @@
+:root {
+    --main_overall_color_primary: #3e3e3d;
+    --main_overall_color_secundary: #ee0613;
+    --main_overall_color_tertiary: #ffffff;
+    --main_overall_color_quaternary: #131313;
+    --main_overall_color_quinary: #131313de;
+    --main_overall_color_sextuple: #ffffffb4;
+}
+
+@font-face {
+    font-family: 'mainText';
+    src: url('../../assets/fonts/Parkinsans-Medium.ttf');
+}
+
+.application_global_header_container_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+    background-color: #1a1a1a;
+    /* Fondo de respaldo */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transform: scaleX(-1);
+}
+
+.application_global_background_element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.application_global_video_element_overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(34, 34, 34, 0.37);
+    z-index: 3;
+}
+
+.image_slider_base {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(25%) brightness(0.75);
+    z-index: 1;
+}
+
+.image_slider_transition {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(80%) brightness(0.75);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out, filter 2s ease-in-out;
+}
+
+.image_slider_transition.active {
+    opacity: 1;
+    filter: grayscale(80%) brightness(0.75) blur(0px);
+}
+
+.hero_text_container_text_left {
+    font-family: 'mainText';
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%) scaleX(-1);
+    z-index: 10;
+    max-width: 580px;
+    text-align: left;
+    color: var(--main_overall_color_tertiary);
+    padding: 20px 10px;
+}
+
+.hero_title_fixed_height_wrapper {
+    min-height: calc(3.0rem * 2.4);
+    display: flex;
+    align-items: center;
+}
+
+.fade_text {
+    font-size: 2.3rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.15;
+    color: var(--main_overall_color_tertiary);
+    animation: slideInText 4.0s ease-in-out;
+    animation-fill-mode: both;
+    text-wrap: balance;
+}
+
+@keyframes slideInText {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+        filter: blur(10px);
+    }
+}
+
+.hero_subtitle {
+    font-size: 0.90rem;
+    color: var(--main_overall_color_sextuple);
+    margin: 16px 0 8px 0;
+    letter-spacing: 0.4px;
+    animation: fadeInStatic 1s ease-out forwards;
+}
+
+.hero_reason {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    max-width: 580px;
+    margin-bottom: 30px;
+    animation: fadeInStatic 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInStatic {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero_actions {
+    display: flex;
+    gap: 20px;
+    animation: fadeInStatic 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.btn_primary,
+.btn_secondary {
+    font-family: 'mainText';
+    font-weight: 600;
+    padding: 12px 26px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    letter-spacing: 0.6px;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.btn_primary {
+    background-color: var(--main_overall_color_secundary);
+    color: var(--main_overall_color_tertiary);
+    border: none;
+}
+
+.btn_primary:hover {
+    background-color: var(--main_overall_color_tertiary);
+    color: var(--main_overall_color_secundary);
+    transform: translateY(-3px);
+}
+
+.btn_secondary {
+    background-color: transparent;
+    color: var(--main_overall_color_tertiary);
+    border: 2px solid var(--main_overall_color_tertiary);
+}
+
+.btn_secondary:hover {
+    background-color: var(--main_overall_color_tertiary);
+    color: var(--main_overall_color_primary);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .hero_text_container_text_left {
+        right: 5%;
+        max-width: 85%;
+    }
+
+    .fade_text {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero_text_container_text_left {
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        text-align: center;
+        transform: translateY(-50%) scaleX(-1);
+        padding: 0 20px;
+        width: 90%;
+    }
+
+    .hero_title_fixed_height_wrapper {
+        justify-content: center;
+        min-height: calc(2.5rem * 2.4);
+    }
+
+    .fade_text {
+        font-size: 1.8rem;
+    }
+
+    .hero_actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .application_global_header_container_video {
+        width: 100%;
+        height: 85vh;
+        overflow: hidden;
+    }
+
+    .hero_text_container_text_left {
+        margin-top: 60px;
+    }
+
+    .fade_text {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero_subtitle {
+        font-size: 0.8rem;
+        margin: 12px 0 6px 0;
+    }
+
+    .hero_reason {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .hero_actions {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .btn_primary,
+    .btn_secondary {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .fade_text {
+        font-size: 1.3rem;
+    }
+
+    .hero_title_fixed_height_wrapper {
+        min-height: calc(1.8rem * 2.4);
+    }
+
+    .hero_reason {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

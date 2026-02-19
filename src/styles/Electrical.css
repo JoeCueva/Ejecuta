@@ -1,0 +1,719 @@
+:root {
+    --main_overall_color_primary: #3e3e3d;
+    --main_overall_color_secundary: #ee0613;
+    --main_overall_color_tertiary: #ffffff;
+    --main_overall_color_quaternary: #131313;
+    --main_overall_color_quinary: #131313de;
+    --main_overall_color_sextuple: #ffffffb4;
+    --main_overall_color_transparent_red: #ba020ba3;
+    --main_overall_color_transparent_back: #040303b5;
+    --main_overall_color_transparent_white: #fffffff0;
+}
+
+@font-face {
+    font-family: 'mainText';
+    src: url('../../assets/fonts/Parkinsans-Medium.ttf');
+}
+
+
+/* ==========================================
+   ELECTRICAL PAGE - PROFESSIONAL DESIGN
+   ========================================== */
+
+.electric-hero {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    background-image: linear-gradient(135deg,
+            rgba(19, 19, 19, 0.712) 100%,
+            rgba(238, 6, 19, 0.15) 50%),
+        url("../assets/img/instalacionElectrica3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    font-family: 'mainText';
+}
+
+.electric-hero-overlay {
+    width: 100%;
+    padding: 0 6rem;
+}
+
+.electric-hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--main_overall_color_tertiary);
+}
+
+.electric-hero-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--main_overall_color_secundary);
+    background: var(--main_overall_color_transparent_white);
+}
+
+.electric-hero-content h1 {
+    font-family: 'mainText', sans-serif;
+    font-size: 4rem;
+    line-height: 1.15;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    max-width: 900px;
+    letter-spacing: -0.02em;
+}
+
+.electric-hero-description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 750px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+.electric-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 5rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: 'mainText';
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--main_overall_color_secundary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* Intro Section */
+.electric-intro {
+    padding: 4rem 6rem;
+    background: var(--main_overall_color_tertiary);
+    font-family: 'mainText';
+}
+
+.electric-intro-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.electric-intro-content h2 {
+    font-size: 2.5rem;
+    color: var(--main_overall_color_primary);
+    margin-bottom: 2.5rem;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.intro-leads {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--main_overall_color_primary);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    border-left: 2px solid var(--main_overall_color_transparent_red);
+    padding-left: 1.5rem;
+}
+
+.intro-text-block {
+    margin-bottom: 3rem;
+}
+
+.intro-text-block p {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--main_overall_color_primary);
+    margin-bottom: 1.5rem;
+}
+
+.intro-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    padding: 1.0rem;
+    background: var(--main_overall_color_sextuple);
+    border-left: 2px solid var(--main_overall_color_transparent_red);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: rgba(0, 0, 0, 0.072);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 1.2rem;
+    color: var(--main_overall_color_secundary);
+}
+
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.feature-card h4 {
+    font-size: 1rem;
+    color: var(--main_overall_color_primary);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.feature-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--main_overall_color_primary);
+}
+
+.electric-intro-image {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+}
+
+.electric-intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2);
+    border-radius: 10px;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(19, 19, 19, 0.9), transparent);
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+.image-caption span {
+    font-size: 0.85rem;
+    color: var(--main_overall_color_tertiary);
+    font-style: italic;
+}
+
+
+.electrical-power-systems-specialized-solutions-showcase-section {
+    font-family: 'mainText';
+    padding: 1rem 6rem;
+    color: var(--main_overall_color_quinary);
+}
+
+.electrical-power-systems-specialized-solutions-main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.electrical-power-systems-solutions-section-header-wrapper {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 5rem;
+}
+
+.electrical-power-systems-global-section-category-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.electrical-power-systems-solutions-section-header-wrapper h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+.electrical-power-systems-solutions-technology-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.electrical-power-systems-individual-solution-technology-card {
+    background: rgba(0, 0, 0, 0.072);
+    border: 1px solid rgba(14, 14, 14, 0.244);
+    padding: 3rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.electrical-power-systems-individual-solution-technology-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--main_overall_color_secundary);
+    transform: translateY(-5px);
+}
+
+.electrical-power-systems-individual-solution-technology-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.electrical-power-systems-individual-solution-technology-card ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.electrical-power-systems-individual-solution-technology-card li {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--main_overall_color_primary);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.electrical-power-systems-individual-solution-technology-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--main_overall_color_secundary);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+
+.exec-flow-section {
+    padding: 40px 20px;
+    font-family: 'mainText';
+}
+
+.exec-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.exec-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--main_overall_color_secundary);
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.exec-title {
+    font-size: 2.5rem;
+    color: var(--main_overall_color_quinary);
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.exec-steps-wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.exec-steps-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    z-index: 1;
+}
+
+.exec-step-item {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    padding: 0 15px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exec-number-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.exec-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.exec-dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.exec-content h4 {
+    font-size: 1.1rem;
+    color: var(--main_overall_color_quinary);
+    margin: 0 0 12px 0;
+    font-weight: 700;
+}
+
+.exec-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--main_overall_color_quinary);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.exec-step-item:hover {
+    transform: translateY(-10px);
+}
+
+.exec-step-item:hover .exec-number {
+    color: var(--main_overall_color_quinary);
+}
+
+.exec-step-item:hover .exec-dot {
+    border-color: var(--main_overall_color_quinary);
+    box-shadow: 0 0 0 5px rgba(0, 80, 255, 0.15);
+}
+
+.exec-step-item:hover .exec-content p {
+    opacity: 1;
+    color: var(--main_overall_color_quaternary);
+}
+
+.process-item:hover h4 {
+    color: var(--main_overall_color_secundary);
+}
+
+
+
+.electric-vision {
+    font-family: 'mainText';
+    position: relative;
+    min-height: 70vh;
+    background-image: url("../assets/img/fondoElectricoImagen2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.electric-vision-overlay {
+    background: linear-gradient(135deg,
+            rgba(19, 19, 19, 0.88) 0%,
+            rgba(238, 6, 19, 0.25) 100%);
+    width: 100%;
+    padding: 6rem;
+}
+
+.electric-vision-content {
+    max-width: 900px;
+    color: var(--main_overall_color_tertiary);
+}
+
+.vision-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.electric-vision-content h2 {
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.electric-vision-content p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+}
+
+.vision-highlights {
+    display: grid;
+    gap: 1rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    padding: 0.8rem 0;
+}
+
+.highlight-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: var(--main_overall_color_secundary);
+    color: var(--main_overall_color_tertiary);
+    border-radius: 50%;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.electric-cta {
+    font-family: 'mainText';
+    padding: 3rem 6rem;
+    background: var(--main_overall_color_tertiary);
+}
+
+.electric-cta-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    color: var(--main_overall_color_primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.cta-content p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--main_overall_color_transparent_back);
+    margin-bottom: 3rem;
+}
+
+.cta-button {
+    font-family: 'mainText';
+    background: var(--main_overall_color_secundary);
+    color: var(--main_overall_color_tertiary);
+    border: none;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--main_overall_color_quinary);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+
+    .electric-hero-overlay {
+        padding: 5rem 3rem;
+    }
+
+    .electric-hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .electric-hero-stats {
+        gap: 3rem;
+    }
+
+    .electric-intro {
+        padding: 4rem 3rem;
+    }
+
+    .electric-intro-container {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .intro-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .electrical-power-systems-specialized-solutions-showcase-section {
+        padding: 4rem 3rem;
+    }
+
+    .electric-vision-overlay {
+        padding: 5rem 3rem;
+    }
+
+    .electric-vision-content h2 {
+        font-size: 2.6rem;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .electric-hero {
+        background-attachment: scroll;
+    }
+
+    .electric-hero-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .electric-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .electric-intro-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .intro-features {
+        grid-template-columns: 1fr;
+    }
+
+    .electrical-power-systems-solutions-technology-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .electric-hero-overlay {
+        padding: 4.5rem 1.5rem;
+    }
+
+    .electric-hero-content h1 {
+        font-size: 2.3rem;
+    }
+
+    .electric-hero-stats {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .electric-intro {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .electric-intro-container {
+        grid-template-columns: 1fr;
+    }
+
+    .electrical-power-systems-solutions-technology-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exec-steps-wrapper {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .exec-steps-wrapper::before {
+        display: none;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .electric-hero {
+        height: auto;
+        min-height: 100vh;
+        background-attachment: scroll;
+    }
+
+    .electric-hero-overlay {
+        padding: 4rem 1.2rem;
+    }
+
+    .electric-hero-content h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .electric-hero-description {
+        font-size: 0.85rem;
+    }
+
+    .electric-hero-stats {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .electric-intro {
+        padding: 3rem 1.2rem;
+    }
+
+    .electric-intro-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .intro-features {
+        grid-template-columns: 1fr;
+    }
+
+    .electric-vision-overlay {
+        padding: 4rem 1.2rem;
+    }
+
+    .electric-vision-content h2 {
+        font-size: 2rem;
+    }
+
+    .electric-cta {
+        padding: 3rem 1.2rem;
+    }
+
+}

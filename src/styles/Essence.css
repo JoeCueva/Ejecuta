@@ -1,0 +1,804 @@
+:root {
+    --main_overall_color_primary: #3e3e3d;
+    --main_overall_color_secundary: #ee0613;
+    --main_overall_color_tertiary: #ffffff;
+    --main_overall_color_quaternary: #131313;
+    --main_overall_color_quinary: #131313de;
+    --main_overall_color_sextuple: #ffffffb4;
+    --main_overall_color_transparent_red: #ba020ba3;
+    --main_overall_color_transparent_back: #040303b5;
+    --main_overall_color_transparent_white: #fffffff0;
+}
+
+@font-face {
+    font-family: 'mainText';
+    src: url('../../assets/fonts/Parkinsans-Medium.ttf');
+}
+
+/* =========================
+   SECCION HISTORIA EJECUTA
+========================= */
+
+.main_essence_page_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 5%;
+    background-color: var(--main_overall_color_tertiary);
+    box-sizing: border-box;
+}
+
+.monolithic_asymmetric_information_container_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.15), 0px 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.textual_narrative_content_left_alignment_block {
+    flex: 1.2;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailed_history_descriptive_narrative_text {
+    font-family: 'mainText', sans-serif;
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--main_overall_color_primary);
+    text-align: justify;
+    margin: 0;
+}
+
+.visual_illustrative_media_right_alignment_block {
+    flex: 0.8;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.high_fidelity_technical_imagery_element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.95);
+    transition: transform 0.5s ease;
+}
+
+.monolithic_asymmetric_information_container_wrapper:hover .high_fidelity_technical_imagery_element {
+    transform: scale(1.03);
+}
+
+/* =========================
+   SECCION VALORES OBJETIVOS EJECUTA
+========================= */
+
+.institutional_identity_scroll_based_strategic_content_overlay_container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: 'mainText';
+    background-image: url(../assets/img/fondoObjetivos.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.asymmetric_principles_and_operational_foundations_grid_layout,
+.asymmetric_vision_projection_and_corporate_future_grid_layout,
+.asymmetric_corporate_values_and_operational_ethics_grid_layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.conceptual_strategic_mission_explanatory_text_block,
+.conceptual_strategic_vision_explanatory_text_block,
+.conceptual_strategic_values_explanatory_text_block {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main_overall_color_transparent_white);
+}
+
+.conceptual_strategic_section_heading,
+.conceptual_vision_section_heading,
+.conceptual_values_section_heading {
+    padding: 40px;
+    font-size: 2.5rem;
+    color: var(--main_overall_color_quaternary);
+    line-height: 1.1;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.formal_mission_statement_structural_content_block,
+.formal_vision_statement_structural_content_block,
+.formal_values_statement_structural_content_block {
+    background-color: var(--main_overall_color_transparent_red);
+    padding: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.formal_mission_title_heading,
+.formal_vision_title_heading,
+.formal_values_title_heading {
+    font-size: 2rem;
+    color: var(--main_overall_color_tertiary);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.formal_mission_detailed_description_text,
+.formal_vision_detailed_axiological_projection_text,
+.formal_values_detailed_axiological_description_text {
+    font-size: 1.0rem;
+    line-height: 1.5;
+    color: var(--main_overall_color_tertiary);
+}
+
+/* =========================
+   SECCION ICONOS ANIMADOS
+========================= */
+
+.conceptual_strategic_mission_icon_flix {
+    width: 100%;
+    padding-left: 4vw;
+}
+
+.conceptual_strategic_mission_explanatory_text_block i,
+.conceptual_strategic_vision_explanatory_text_block i,
+.conceptual_strategic_values_explanatory_text_block i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    font-size: 2.2rem;
+    color: var(--main_overall_color_secundary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--main_overall_color_secundary);
+    border-radius: 50%;
+    margin-top: 30px;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(238, 6, 19, 0.2);
+}
+
+.conceptual_strategic_mission_explanatory_text_block i::after,
+.conceptual_strategic_vision_explanatory_text_block i::after,
+.conceptual_strategic_values_explanatory_text_block i::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed var(--main_overall_color_secundary);
+    border-radius: 50%;
+    animation: rotateNode 10s linear infinite;
+    padding: 10px;
+}
+
+@keyframes rotateNode {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.conceptual_strategic_mission_explanatory_text_block:hover i,
+.conceptual_strategic_vision_explanatory_text_block:hover i,
+.conceptual_strategic_values_explanatory_text_block:hover i {
+    background: var(--main_overall_color_secundary);
+    color: var(--main_overall_color_tertiary);
+    box-shadow: 0 0 30px rgba(238, 6, 19, 0.6);
+    transform: scale(1.1);
+}
+
+
+/* =========================
+   SECCION DE RESUMEN DE VALORES
+========================= */
+
+.strategic_specialization_closure_monolith {
+    width: 100%;
+    text-align: center;
+    padding: 30px 5%;
+    font-family: 'mainText';
+}
+
+.specialization_divider_line {
+    width: 80px;
+    height: 3px;
+    background: var(--main_overall_color_secundary);
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+}
+
+.specialization_narrative_summary {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--main_overall_color_quinary);
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.specialization_narrative_summary span {
+    color: var(--main_overall_color_secundary);
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.specialization_technical_tag_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.technical_tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--main_overall_color_quinary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+/* =========================
+   SECTORES DONDE OPERAMOS
+========================= */
+
+.institutional_operational_sectors_showcase_container {
+    padding: 6rem 4rem;
+    background-color: var(--main_overall_color_quaternary);
+    position: relative;
+    overflow: hidden;
+    font-family: 'mainText';
+}
+
+.institutional_operational_sectors_header_block {
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+}
+
+.institutional_operational_sectors_header_block h2 {
+    color: var(--main_overall_color_tertiary);
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+.institutional_operational_sectors_header_block p {
+    margin-top: 1rem;
+    color: var(--main_overall_color_sextuple);
+    line-height: 1.6;
+}
+
+.institutional_operational_sectors_navigation_controls {
+    position: absolute;
+    top: 6rem;
+    right: 4rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.institutional_operational_sectors_navigation_controls button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--main_overall_color_sextuple);
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.institutional_operational_sectors_navigation_controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.institutional_operational_sectors_horizontal_slider {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+}
+
+.institutional_operational_sector_card {
+    position: relative;
+    min-width: 320px;
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.45s ease;
+}
+
+.institutional_operational_sector_card:hover {
+    transform: scale(1.04);
+}
+
+.institutional_operational_sector_card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.35));
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+}
+
+.institutional_operational_sector_card:hover::after {
+    opacity: 1;
+}
+
+.institutional_operational_sector_overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    z-index: 2;
+}
+
+.institutional_operational_sector_overlay h3 {
+    color: var(--main_overall_color_tertiary);
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.sector_summary {
+    color: var(--main_overall_color_sextuple);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.sector_detail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: var(--main_overall_color_transparent_white);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: all 0.35s ease;
+}
+
+.institutional_operational_sector_card:hover h3 {
+    opacity: 0;
+}
+
+.institutional_operational_sector_card:hover .sector_summary {
+    opacity: 0;
+}
+
+.institutional_operational_sector_card:hover .sector_detail {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   SECCION DE FAQ
+========================= */
+
+.ejecuta_faq_section {
+    padding: 4rem 1rem;
+    color: var(--main_overall_color_quaternary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'mainText';
+}
+
+.ejecuta_faq_header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+}
+
+.ejecuta_faq_badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--main_overall_color_secundary);
+}
+
+.ejecuta_faq_header h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.ejecuta_faq_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.ejecuta_faq_card {
+    color: var(--main_overall_color_quaternary);
+    padding: 1.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px var(--main_overall_color_transparent_back);
+}
+
+.ejecuta_faq_card i {
+    font-size: 2rem;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.ejecuta_faq_card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.ejecuta_faq_card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--main_overall_color_transparent_back);
+    max-width: 90%;
+}
+
+.ejecuta_faq_card:hover {
+    transform: translateY(-8px);
+    border-bottom: 1px solid var(--main_overall_color_secundary);
+}
+
+/* =========================
+   SECCION DE TEASER
+========================= */
+
+.method_teaser {
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: 'mainText';
+}
+
+.method_teaser_container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.method_teaser_header {
+    max-width: 520px;
+    margin-bottom: 4rem;
+}
+
+.method_badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--main_overall_color_secundary);
+}
+
+.method_teaser_header h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin: 1rem 0;
+    color: var(--main_overall_color_quaternary);
+}
+
+.method_teaser_header h2 span {
+    color: var(--main_overall_color_secundary);
+}
+
+.method_teaser_header p {
+    font-size: 1.05rem;
+    color: var(--main_overall_color_quinary);
+    line-height: 1.6;
+}
+
+.method_steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+}
+
+.method_step {
+    position: relative;
+}
+
+.method_step span {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--main_overall_color_quaternary);
+    opacity: 1;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.method_step h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--main_overall_color_secundary);
+    margin-bottom: 0.5rem;
+}
+
+.method_step p {
+    font-size: 0.95rem;
+    color: var(--main_overall_color_quinary);
+    line-height: 1.5;
+}
+
+.method_teaser_cta {
+    margin-top: 5rem;
+}
+
+.method_teaser_cta a {
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: var(--main_overall_color_secundary);
+    border-bottom: 2px solid var(--main_overall_color_secundary);
+    padding-bottom: 5px;
+}
+
+.method_teaser_cta i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.method_teaser_cta a:hover i {
+    transform: translateX(8px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+
+    /* ===== HISTORIA ===== */
+    .monolithic_asymmetric_information_container_wrapper {
+        flex-direction: column;
+    }
+
+    .textual_narrative_content_left_alignment_block {
+        padding: 40px;
+    }
+
+    .visual_illustrative_media_right_alignment_block {
+        height: 320px;
+    }
+
+    /* ===== MISION / VISION / VALORES ===== */
+    .asymmetric_principles_and_operational_foundations_grid_layout,
+    .asymmetric_vision_projection_and_corporate_future_grid_layout,
+    .asymmetric_corporate_values_and_operational_ethics_grid_layout {
+        grid-template-columns: 1fr;
+    }
+
+    .conceptual_strategic_section_heading,
+    .conceptual_vision_section_heading,
+    .conceptual_values_section_heading {
+        font-size: 2.1rem;
+        padding: 30px;
+    }
+
+    .formal_mission_statement_structural_content_block,
+    .formal_vision_statement_structural_content_block,
+    .formal_values_statement_structural_content_block {
+        padding: 80px;
+    }
+
+    /* ===== SECTORES ===== */
+    .institutional_operational_sectors_navigation_controls {
+        top: 4rem;
+        right: 2rem;
+    }
+
+    /* ===== METODO ===== */
+    .method_steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+    /* ===== HISTORIA ===== */
+    .main_essence_page_container {
+        padding: 40px 20px;
+    }
+
+    .textual_narrative_content_left_alignment_block {
+        padding: 30px 24px;
+    }
+
+    .detailed_history_descriptive_narrative_text {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        text-align: left;
+    }
+
+    .visual_illustrative_media_right_alignment_block {
+        height: 260px;
+    }
+
+    /* ===== MISION / VISION / VALORES ===== */
+    .institutional_identity_scroll_based_strategic_content_overlay_container {
+        background-attachment: scroll;
+    }
+
+    .conceptual_strategic_section_heading,
+    .conceptual_vision_section_heading,
+    .conceptual_values_section_heading {
+        font-size: 1.9rem;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .formal_mission_statement_structural_content_block,
+    .formal_vision_statement_structural_content_block,
+    .formal_values_statement_structural_content_block {
+        padding: 50px 30px;
+    }
+
+    .formal_mission_title_heading,
+    .formal_vision_title_heading,
+    .formal_values_title_heading {
+        font-size: 1.6rem;
+    }
+
+    .formal_mission_detailed_description_text,
+    .formal_vision_detailed_axiological_projection_text,
+    .formal_values_detailed_axiological_description_text {
+        font-size: 0.95rem;
+    }
+
+    /* ===== ICONOS ===== */
+    .conceptual_strategic_mission_icon_flix {
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* ===== RESUMEN ===== */
+    .specialization_narrative_summary {
+        font-size: 0.9rem;
+        letter-spacing: 0.6px;
+    }
+
+    /* ===== SECTORES ===== */
+    .institutional_operational_sectors_showcase_container {
+        padding: 4rem 1.5rem;
+    }
+
+    .institutional_operational_sectors_navigation_controls {
+        display: none;
+    }
+
+    .institutional_operational_sector_card {
+        min-width: 280px;
+        height: 380px;
+    }
+
+    /* ===== FAQ ===== */
+    .ejecuta_faq_header h2 {
+        font-size: 2.2rem;
+    }
+
+    .ejecuta_faq_card h3 {
+        font-size: 1.05rem;
+    }
+
+    /* ===== METODO ===== */
+    .method_teaser {
+        padding: 4rem 1.5rem;
+    }
+
+    .method_teaser_header h2 {
+        font-size: 2.2rem;
+    }
+
+    .method_steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+}
+
+
+@media (max-width: 390px) {
+
+    /* ===== HISTORIA ===== */
+    .textual_narrative_content_left_alignment_block {
+        padding: 24px 18px;
+    }
+
+    /* ===== MISION / VISION / VALORES ===== */
+    .conceptual_strategic_section_heading,
+    .conceptual_vision_section_heading,
+    .conceptual_values_section_heading {
+        font-size: 1.6rem;
+    }
+
+    .formal_mission_statement_structural_content_block,
+    .formal_vision_statement_structural_content_block,
+    .formal_values_statement_structural_content_block {
+        padding: 40px 22px;
+    }
+
+    /* ===== SECTORES ===== */
+    .institutional_operational_sector_card {
+        min-width: 250px;
+        height: 340px;
+    }
+
+    /* ===== FAQ ===== */
+    .ejecuta_faq_header h2 {
+        font-size: 1.9rem;
+    }
+
+    /* ===== METODO ===== */
+    .method_teaser_header h2 {
+        font-size: 1.9rem;
+    }
+
+    .method_step span {
+        font-size: 2.4rem;
+    }
+
+}

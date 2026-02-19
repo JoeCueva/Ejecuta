@@ -1,0 +1,1002 @@
+import '../../styles/Home.css';
+import StellaMaris from '../../assets/img/ClienteLogos/StellaMaris.png';
+import Falabella from '../../assets/img/ClienteLogos/Falabella.png';
+import Consorcio from '../../assets/img/ClienteLogos/Consorcio.png';
+import Feban from '../../assets/img/ClienteLogos/Feban.png';
+import Tottus from '../../assets/img/ClienteLogos/Tottus.png';
+import IconElectrical from '../../assets/icons/IconElectrical.png';
+import IconFire from '../../assets/icons/iconFire.png';
+import IconSanitary from '../../assets/icons/iconSanitary.png';
+import IconWifi from '../../assets/icons/iconWifi.png';
+import BannerIsotipo from '../../assets/img/bannerIsotipo.png';
+import SeccionFoto1 from '../../assets/img/SeccionFoto1.jpeg';
+import SeccionFoto2 from '../../assets/img/SeccionFoto2.jpeg';
+import FondoCTA from '../../assets/img/FondoCTA.jpg';
+import edificacionFalabella from '../../assets/img/edificacionFalabella.jpg';
+import edificacionPrecio from '../../assets/img/edificacionPrecio.jpg';
+import educacionalUPN from '../../assets/img/educacionalUPN.jpg';
+import edificacionStella from '../../assets/img/edificacionStella.jpg';
+import imagenEjemplo1 from '../../assets/img/obra1.png';
+import imagenEjemplo2 from '../../assets/img/obra2.png';
+import imagenEjemplo3 from '../../assets/img/revisionTablero.png';
+import enfoqueIngenierio from '../../assets/img/enfoqueIngeniero.jpg';
+import infraTuberias from '../../assets/img/infraTuberias.jpg';
+import ImagenSeccionMarca from '../../assets/img/instalacionInspeccion.jpeg';
+import { use, useEffect, useState, useRef } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import { supabase } from '../../utils/SupabaseClient'; 
+
+const Home = () => {
+
+    {/* ================= ACTIVATED ================= */ }
+    const [activeItem, setActiveItem] = useState(null);
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+    const [selectedService, setSelectedService] = useState(null);
+    const [activeEdificacion, setActiveEdificacion] = useState(0);
+    const [activeTecnica, setActiveTecnica] = useState(0);
+    const [activeInfra, setActiveInfra] = useState(0);
+
+    // PARA FORMULARIO SERVICES - BOTON DE ENVIO
+    const [isSending, setIsSending] = useState(false);
+    const [formStatus, setFormStatus] = useState(null);
+
+    // PARA FORMULARIO MODAL - AGREGAR ARCHIVOS
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const uploadIntervalRef = useRef(null);
+
+    // REFERENCIA AL FORMULARIO DEL MODAL
+    const formModalRef = useRef(null);
+
+    const handleToggle = (index) => {
+        setActiveItem(activeItem === index ? null : index);
+    };
+
+    {/* ================= PARA FORMULARIO MODAL - BARRA DE CARGA DE ARCHIVO MB ================= */ }
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setUploadProgress(0);
+
+        const fileData = {
+            name: file.name,
+            sizeMB: (file.size / 1024 / 1024).toFixed(2),
+            raw: file
+        };
+
+        setSelectedFile(fileData);
+
+        let progress = 0;
+        const speed = Math.max(10, 200 / fileData.sizeMB);
+
+        uploadIntervalRef.current = setInterval(() => {
+            progress += speed;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(uploadIntervalRef.current);
+            }
+            setUploadProgress(Math.floor(progress));
+        }, 100);
+    };
+
+    {/* ================= PARA FORMULARIO MODAL - BORRAR ARCHIVO SELECCIONADO ================= */ }
+    const handleRemoveFile = () => {
+        clearInterval(uploadIntervalRef.current);
+        setSelectedFile(null);
+        setUploadProgress(0);
+    };
+
+    {/* ================= PARA FORMULARIO MODAL - SUBIR ARCHIVO A SUPABASE ================= */ }
+    const uploadFileToStorage = async () => {
+        if (!selectedFile) return 'Sin archivo adjunto';
+
+        const fileName = `${Date.now()}-${selectedFile.raw.name}`;
+
+        const { error } = await supabase
+            .storage
+            .from('contact-files')
+            .upload(fileName, selectedFile.raw);
+
+        if (error) {
+            console.error('Error subiendo archivo:', error);
+            throw error;
+        }
+
+        const { data } = supabase
+            .storage
+            .from('contact-files')
+            .getPublicUrl(fileName);
+
+        return data.publicUrl;
+    };
+
+    {/* ================= PARA FORMULARIO MODAL - ENVIAR CON EMAILJS ================= */ }
+    const sendQuoteEmail = async (e) => {
+        e.preventDefault();
+        setIsSending(true);
+        setFormStatus(null);
+
+        try {
+            let fileUrl = 'Sin archivo adjunto';
+
+            if (selectedFile) {
+                fileUrl = await uploadFileToStorage();
+            }
+
+            const hiddenFileInput = formModalRef.current.querySelector('input[name="file"]');
+            hiddenFileInput.value = fileUrl;
+
+            await emailjs.sendForm(
+                'service_xdhmw8s',
+                'template_z4tjlvm',
+                formModalRef.current,
+                't4N2jnUCsiufz1fkJ'
+            );
+
+            setFormStatus('success');
+            formModalRef.current.reset();
+            setSelectedFile(null);
+            setUploadProgress(0);
+
+            /* Cerrar modal después de 2 segundos */
+            setTimeout(() => {
+                closeQuoteModal();
+            }, 2000);
+
+        } catch (error) {
+            console.error(error);
+            setFormStatus('error');
+        } finally {
+            setIsSending(false);
+        }
+    };
+
+    {/* ================= SECTION ACTIVATED CONSTRUIMOS CON COMPROMISO ================= */ }
+    useEffect(() => {
+        const elements = document.querySelectorAll(
+            ".reveal_section, .reveal_up, .reveal_right"
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("reveal_show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        elements.forEach(el => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, []);
+
+    {/* ================= CLIENT SECTION FIVE ================= */ }
+    const clientesRespaldanEjecutaPrincipal = [
+        {
+            img: StellaMaris, alt: 'Stella Maris'
+        },
+        {
+            img: Falabella, alt: 'Falabella'
+        },
+        {
+            img: Consorcio, alt: 'Consorcio'
+        },
+        {
+            img: Feban, alt: 'Feban'
+        },
+        {
+            img: Tottus, alt: 'Tottus'
+        }
+    ];
+
+    {/* ================= FORM SECTION MODAL ================= */ }
+
+    const openQuoteModal = (service) => {
+        setSelectedService(service);
+        setIsQuoteModalOpen(true);
+        setFormStatus(null);
+        setSelectedFile(null);
+        setUploadProgress(0);
+    };
+
+    const closeQuoteModal = () => {
+        setIsQuoteModalOpen(false);
+        setSelectedService(null);
+        setFormStatus(null);
+        setSelectedFile(null);
+        setUploadProgress(0);
+        if (formModalRef.current) {
+            formModalRef.current.reset();
+        }
+    };
+
+    useEffect(() => {
+        if (isQuoteModalOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isQuoteModalOpen]);
+
+
+    {/* ================= FOR ESC ================= */ }
+    useEffect(() => {
+        if (!isQuoteModalOpen) return;
+
+        const handleEsc = (e) => {
+            if (e.key === "Escape") {
+                closeQuoteModal();
+            }
+        };
+
+        document.addEventListener("keydown", handleEsc);
+
+        return () => {
+            document.removeEventListener("keydown", handleEsc);
+        };
+    }, [isQuoteModalOpen]);
+
+
+    {/* =========== FOR CARRUSEL IMAGE EDIFICACION ============ */ }
+    const edificacionImages = [
+        edificacionFalabella,
+        edificacionPrecio,
+        educacionalUPN,
+        edificacionStella,
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveEdificacion(prev => (prev + 1) % edificacionImages.length);
+        }, 3200);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    {/* =========== FOR CARRUSEL IMAGE TECNICA ============ */ }
+    const tecnicaImages = [
+        enfoqueIngenierio,
+        imagenEjemplo2,
+        imagenEjemplo3
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveTecnica(prev => (prev + 1) % tecnicaImages.length);
+        }, 3800);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    {/* =========== FOR CARRUSEL IMAGE Infraestructura ============ */ }
+
+    const infraImages = [
+        imagenEjemplo1,
+        infraTuberias
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveInfra(prev => (prev + 1) % infraImages.length);
+        }, 4500);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <>
+            {/* ================================ NAVBAR SECCION INICIO ================================ */}
+            {/* <Navbar /> */}
+
+            {/* =============================== SECCION COMO TRABAJAMOS =============================== */}
+            <section className="certainty_section">
+                <div
+                    className="certainty_background"
+                    style={{ backgroundImage: `url(${BannerIsotipo})` }}
+                />
+
+                <div className="certainty_container">
+
+                    <div className="certainty_text">
+
+                        <span className="certainty_tag">Ejecución sin fricción</span>
+
+                        <h2>
+                            Tu proyecto no debería<br />
+                            depender de la suerte
+                        </h2>
+
+                        <p className="certainty_intro">
+                            Cuando la ingeniería está clara desde el inicio,
+                            la obra deja de ser una fuente de estrés y se convierte
+                            en un proceso controlado.
+                        </p>
+
+                        <div className="certainty_list">
+
+                            <div className="certainty_item">
+                                <span className="certainty_icon">01</span>
+                                <p>
+                                    Las decisiones técnicas no se postergan.
+                                    Se definen antes de ejecutar.
+                                </p>
+                            </div>
+
+                            <div className="certainty_item">
+                                <span className="certainty_icon">02</span>
+                                <p>
+                                    Cada sistema avanza solo después de ser verificado.
+                                </p>
+                            </div>
+
+                            <div className="certainty_item">
+                                <span className="certainty_icon">03</span>
+                                <p>
+                                    La instalación responde a la operación real,
+                                    no solo al plano.
+                                </p>
+                            </div>
+
+                            <div className="certainty_item">
+                                <span className="certainty_icon">04</span>
+                                <p>
+                                    El cierre de obra no deja dudas ni pendientes.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className="certainty_visual">
+
+                        <div className="certainty_image primary">
+                            <img src={SeccionFoto1} alt="Ejecución en obra" />
+                        </div>
+
+                        <div className="certainty_image secondary">
+                            <img src={SeccionFoto2} alt="Control técnico" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            {/* ======================= SECCION MANIFIESTO INICIAL DE LA MARCA ======================== */}
+
+            <section className="brand_hero_background_banner_section_wrapper">
+
+                <div className="brand_hero_inner_container">
+
+                    <div className="brand_hero_image_container">
+                        <img src={ImagenSeccionMarca} alt="Imagen sección marca" />
+                    </div>
+
+                    <div className="brand_hero_text_container">
+                        <h1 className="brand_hero_background_banner_main_heading">
+                            Ingeniería que responde cuando tu proyecto lo necesita
+                        </h1>
+
+                        <p className="brand_hero_background_banner_supporting_description">
+                            Sabemos que una instalación eléctrica bien ejecutada define el rendimiento
+                            y la seguridad de toda la obra.
+                            Por eso hoy enfocamos nuestra experiencia en sistemas eléctricos,
+                            integrándolos con instalaciones sanitarias, comunicaciones y contra incendio,
+                            ejecutadas con el mismo nivel de control y responsabilidad técnica
+                            que tu proyecto exige.
+                        </p>
+
+                        <div className="brand_hero_background_banner_action_group">
+                            <Link to="/contactos" className="brand_hero_background_banner_primary_action">
+                                Hablemos de tu proyecto
+                            </Link>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            {/* ============================= SECCION METODOLOGIA EJECUTA ============================= */}
+
+            <section className="container_section_info reveal_section">
+
+                <div className="container_section_info_left reveal_up">
+                    <span className="certainty_tag">¿Por que elegirnos?</span>
+                    <h2 className="container_section_info_title">
+                        Construimos con compromiso y criterio técnico
+                    </h2>
+
+                    <p className="container_section_info_desc">
+                        En <b>EJECUTA CONSTRUCCIÓN S.A.C.</b> ejecutamos cada proyecto
+                        con orden, responsabilidad y control técnico permanente,
+                        asegurando resultados confiables y sostenibles.
+                    </p>
+
+                    <Link to="/approach" className='container_section_info_btn'>
+                        Conocer nuestro enfoque
+                    </Link>
+                    {/* <button className="container_section_info_btn">
+                        Conocer nuestro enfoque
+                    </button> */}
+                </div>
+
+                <div className="container_section_info_right">
+
+                    {[
+                        {
+                            title: "Ejecución técnica con criterio",
+                            content: "Cada sistema se ejecuta bajo decisiones técnicas claras y control permanente en obra."
+                        },
+                        {
+                            title: "Seguridad y control en obra",
+                            content: "Implementamos estándares de seguridad industrial para evitar riesgos en obra y proteger a todos los involucrados"
+                        },
+                        {
+                            title: "Calidad en materiales y procesos",
+                            content: "Utilizamos materiales certificados y procesos alineados a normativa vigente."
+                        },
+                        {
+                            title: "Cumplimiento de plazos",
+                            content: "Planificamos y ejecutamos con orden para cumplir cronogramas sin sacrificar calidad."
+                        },
+                        {
+                            title: "Acompañamiento continuo",
+                            content: "Mantenemos comunicación clara y seguimiento técnico durante todo el proyecto."
+                        }
+                    ].map((item, index) => (
+                        <div
+                            key={index}
+                            className={`container_section_info_item ${activeItem === index ? "active" : ""
+                                }`}
+                            onClick={() => handleToggle(index)}
+                        >
+                            <div className="container_section_info_item_header">
+                                <span>{item.title}</span>
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </div>
+
+                            {activeItem === index && (
+                                <div className="container_section_info_item_content">
+                                    {item.content}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+
+                </div>
+            </section>
+
+            {/* ============================= SECCION DE ALGUNOS CLIENTES ============================= */}
+
+            <section className='enterprise_level_client_trust_validation_section_wrapper'>
+                <div className='enterprise_level_client_trust_validation_section_container'>
+                    <div className="enterprise_level_client_trust_validation_logos_grid_container">
+                        {clientesRespaldanEjecutaPrincipal.map((cliente, index) => (
+                            <div
+                                key={index} className='enterprise_level_client_trust_validation_logo_item_container'>
+                                <img src={cliente.img} alt={cliente.alt} className='enterprise_level_client_trust_validation_logo_image_element' />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ============================= SECCION DE SERVICIOS EJECUTA ============================ */}
+
+            <section className="brand_multidisciplinary_installation_capabilities_section_wrapper">
+                <div className='brand_multidisciplinary_installation_capabilities_container_intro_card'>
+                    <div className="brand_multidisciplinary_installation_capabilities_intro_container">
+                        <h2 className="brand_multidisciplinary_installation_capabilities_intro_title">
+                            Ingeniería que integra todas las especialidades
+                        </h2>
+
+                        <p className="brand_multidisciplinary_installation_capabilities_intro_description">
+                            Nuestro enfoque principal está en las instalaciones eléctricas,
+                            pero entendemos que una obra funciona bien cuando todas las
+                            especialidades técnicas están correctamente coordinadas.
+                        </p>
+                    </div>
+
+                    <div className="brand_multidisciplinary_installation_capabilities_item_wrapper">
+                        <div className="brand_multidisciplinary_installation_capabilities_item_card">
+
+                            <div className="brand_multidisciplinary_installation_capabilities_item_icon_container">
+                                <img
+                                    src={IconElectrical}
+                                    alt="Instalaciones eléctricas"
+                                    className="brand_multidisciplinary_installation_capabilities_item_icon_image"
+                                />
+                            </div>
+
+                            <h3 className="brand_multidisciplinary_installation_capabilities_item_title">
+                                Instalaciones Eléctricas
+                            </h3>
+
+                            <p className="brand_multidisciplinary_installation_capabilities_item_text">
+                                Ejecución de sistemas eléctricos con criterio técnico,
+                                seguridad operativa y control permanente en obra.
+                            </p>
+
+                            <button
+                                className="brand_multidisciplinary_installation_capabilities_item_action_button"
+                                onClick={() => openQuoteModal({
+                                    title: "Instalaciones Eléctricas",
+                                    image: IconElectrical
+                                })}
+                            >
+                                Solicitar Cotización
+                            </button>
+
+                            <NavLink
+                                className="navigation_menu_link_element_seccion_services"
+                                to="/service-electrical"
+                            >
+                                Más información <i className="fa-solid fa-arrow-right"></i>
+                            </NavLink>
+
+
+                        </div>
+                    </div>
+
+                    <div className="brand_multidisciplinary_installation_capabilities_item_wrapper">
+                        <div className="brand_multidisciplinary_installation_capabilities_item_card">
+
+                            <div className="brand_multidisciplinary_installation_capabilities_item_icon_container">
+                                <img
+                                    src={IconSanitary}
+                                    alt="Instalaciones sanitarias"
+                                    className="brand_multidisciplinary_installation_capabilities_item_icon_image"
+                                />
+                            </div>
+
+                            <h3 className="brand_multidisciplinary_installation_capabilities_item_title">
+                                Instalaciones Sanitarias
+                            </h3>
+
+                            <p className="brand_multidisciplinary_installation_capabilities_item_text">
+                                Sistemas sanitarios ejecutados con orden técnico
+                                y compatibilidad con el resto de la obra.
+                            </p>
+
+                            <button
+                                className="brand_multidisciplinary_installation_capabilities_item_action_button"
+                                onClick={() => openQuoteModal({
+                                    title: "Instalaciones Sanitarias",
+                                    image: IconSanitary
+                                })}
+                            >
+                                Solicitar Cotización
+                            </button>
+                            <NavLink
+                                className="navigation_menu_link_element_seccion_services"
+                                to="/service-sanitary"
+                            >
+                                Más información <i className="fa-solid fa-arrow-right"></i>
+                            </NavLink>
+
+
+                        </div>
+                    </div>
+
+                    <div className="brand_multidisciplinary_installation_capabilities_item_wrapper">
+                        <div className="brand_multidisciplinary_installation_capabilities_item_card">
+
+                            <div className="brand_multidisciplinary_installation_capabilities_item_icon_container">
+                                <img
+                                    src={IconWifi}
+                                    alt="Comunicaciones"
+                                    className="brand_multidisciplinary_installation_capabilities_item_icon_image"
+                                />
+                            </div>
+
+                            <h3 className="brand_multidisciplinary_installation_capabilities_item_title">
+                                Comunicaciones
+                            </h3>
+
+                            <p className="brand_multidisciplinary_installation_capabilities_item_text">
+                                Infraestructura de datos integrada desde la
+                                planificación eléctrica del proyecto.
+                            </p>
+
+                            <button
+                                className="brand_multidisciplinary_installation_capabilities_item_action_button"
+                                onClick={() => openQuoteModal({
+                                    title: "Comunicaciones",
+                                    image: IconWifi
+                                })}
+                            >
+                                Solicitar Cotización
+                            </button>
+
+                            <NavLink
+                                className="navigation_menu_link_element_seccion_services"
+                                to="/service-communications"
+                            >
+                                Más información <i className="fa-solid fa-arrow-right"></i>
+                            </NavLink>
+
+
+                        </div>
+                    </div>
+
+                    <div className="brand_multidisciplinary_installation_capabilities_item_wrapper">
+                        <div className="brand_multidisciplinary_installation_capabilities_item_card">
+
+                            <div className="brand_multidisciplinary_installation_capabilities_item_icon_container">
+                                <img
+                                    src={IconFire}
+                                    alt="Sistemas contra incendio"
+                                    className="brand_multidisciplinary_installation_capabilities_item_icon_image"
+                                />
+                            </div>
+
+                            <h3 className="brand_multidisciplinary_installation_capabilities_item_title">
+                                Sistemas Contra Incendio
+                            </h3>
+
+                            <p className="brand_multidisciplinary_installation_capabilities_item_text">
+                                Sistemas contra incendio coordinados
+                                técnicamente con las demás especialidades.
+                            </p>
+
+                            <button
+                                className="brand_multidisciplinary_installation_capabilities_item_action_button"
+                                onClick={() => openQuoteModal({
+                                    title: "Sistema Contraincendio",
+                                    image: IconFire
+                                })}
+                            >
+                                Solicitar Cotización
+                            </button>
+
+                            <NavLink
+                                className="navigation_menu_link_element_seccion_services"
+                                to="/service-fire"
+                            >
+                                Más información <i className="fa-solid fa-arrow-right"></i>
+                            </NavLink>
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ========================== SECCION DE SERVICIOS MODAL EJECUTA ========================= */}
+            {isQuoteModalOpen && (
+                <div className="brand_quote_modal_overlay" onClick={closeQuoteModal}>
+                    <div
+                        className="brand_quote_modal_container"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+
+                        <button
+                            className="brand_quote_modal_close_button"
+                            onClick={closeQuoteModal}
+                        >
+                            <i className="fas fa-times"></i>
+                        </button>
+
+                        <div className="brand_quote_modal_layout">
+
+                            {/* SERVICIO */}
+                            <aside className="brand_quote_modal_service_panel">
+                                <div className="brand_quote_modal_service_icon">
+                                    <img
+                                        src={selectedService?.image}
+                                        alt={selectedService?.title}
+                                    />
+                                </div>
+
+                                <span className="brand_quote_modal_service_tag">
+                                    Servicio Seleccionado
+                                </span>
+
+                                <h2 className="brand_quote_modal_service_title">
+                                    {selectedService?.title}
+                                </h2>
+
+                                <p className="brand_quote_modal_service_desc">
+                                    Complete el formulario para recibir una propuesta técnica
+                                    alineada a los requerimientos de su proyecto.
+                                </p>
+                            </aside>
+
+                            {/* FORMULARIO */}
+                            <section className="brand_quote_modal_form_panel">
+                                <form
+                                    ref={formModalRef}
+                                    onSubmit={sendQuoteEmail}
+                                    className="brand_quote_modal_form"
+                                >
+
+                                    {/* Campos ocultos para el servicio seleccionado */}
+                                    <input
+                                        type="hidden"
+                                        name="service"
+                                        value={selectedService?.title || ''}
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="title"
+                                        value={selectedService?.title || ''}
+                                    />
+
+                                    <div className="form_row_double">
+                                        <div className="brand_quote_modal_form_group">
+                                            <label>Nombre Completo *</label>
+                                            <input
+                                                type="text"
+                                                name="fullname"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="brand_quote_modal_form_group">
+                                            <label>Correo Electrónico *</label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form_row_double">
+                                        <div className="brand_quote_modal_form_group">
+                                            <label>Teléfono *</label>
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                maxLength={9}
+                                                inputMode="numeric"
+                                                pattern="[0-9]*"
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 9);
+                                                }}
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="brand_quote_modal_form_group">
+                                            <label>Empresa</label>
+                                            <input
+                                                type="text"
+                                                name="company"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="brand_quote_modal_form_group">
+                                        <label>Descripción del Proyecto</label>
+                                        <textarea
+                                            rows="3"
+                                            name="message"
+                                        ></textarea>
+                                    </div>
+
+                                    <div className="brand_quote_modal_form_group">
+                                        {!selectedFile && (
+                                            <label
+                                                htmlFor="file-modal"
+                                                className="file_label_custom"
+                                            >
+                                                <i className="fas fa-paperclip"></i>
+                                                Adjuntar información técnica (opcional)
+                                            </label>
+                                        )}
+
+                                        <input
+                                            type="file"
+                                            id="file-modal"
+                                            accept=".pdf,.dwg,.doc,.docx,.xls,.xlsx,.zip"
+                                            onChange={handleFileChange}
+                                            className="hidden_input"
+                                            hidden
+                                        />
+
+                                        {selectedFile && (
+                                            <div className="enterprise_contact_request_file_status">
+
+                                                <div className="enterprise_contact_request_file_header">
+                                                    <span className="file_name">
+                                                        <i className="fa-solid fa-file"></i>
+                                                        {selectedFile.name}
+                                                    </span>
+
+                                                    <button
+                                                        type="button"
+                                                        className="file_remove_btn"
+                                                        onClick={handleRemoveFile}
+                                                    >
+                                                        <i className="fa-solid fa-xmark"></i>
+                                                    </button>
+                                                </div>
+
+                                                <div className="enterprise_contact_request_file_progress_bar">
+                                                    <div
+                                                        className="enterprise_contact_request_file_progress_fill"
+                                                        style={{ width: `${uploadProgress}%` }}
+                                                    ></div>
+                                                </div>
+
+                                                <div className="enterprise_contact_request_file_footer">
+                                                    <span>{uploadProgress}%</span>
+                                                    <span>{selectedFile.sizeMB} MB</span>
+                                                </div>
+
+                                            </div>
+                                        )}
+
+                                        <input type="hidden" name="file" value="" />
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        className={`brand_quote_modal_form_submit_button ${isSending ? 'sending' : ''}`}
+                                        disabled={isSending}
+                                    >
+                                        {isSending ? (
+                                            <>
+                                                <span className='spinner'></span>
+                                                Procesando Solicitud
+                                            </>
+                                        ) : (
+                                            'ENVIAR SOLICITUD'
+                                        )}
+                                    </button>
+
+                                    {formStatus === 'success' && (
+                                        <div className='enterprise_form_status success'>
+                                            <i className="fa-solid fa-circle-check"></i>
+                                            Hemos recibido tu solicitud. Nuestro equipo técnico te contactará en breve.
+                                        </div>
+                                    )}
+
+                                    {formStatus === 'error' && (
+                                        <div className='enterprise_form_status_error'>
+                                            <i className="fa-solid fa-triangle-exclamation"></i>
+                                            Ocurrió un inconveniente al enviar la consulta. Intenta de nuevo.
+                                        </div>
+                                    )}
+                                </form>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* ============================= SECCION DE PROYECTOS EJECUTA ============================ */}
+
+            <section className="enterprise_project_experience_section">
+                <div className="enterprise_project_experience_container">
+
+                    <span className="enterprise_project_experience_tag">
+                        Proyectos
+                    </span>
+
+                    <h2 className="enterprise_project_experience_title">
+                        Experiencia aplicada <br /> en proyectos reales
+                    </h2>
+
+                    <p className="enterprise_project_experience_description">
+                        Hemos participado en proyectos de distintas escalas y complejidades,
+                        donde la coordinación técnica, el cumplimiento normativo
+                        y la ejecución ordenada fueron determinantes para el resultado final.
+                    </p>
+
+                    <div className="enterprise_project_experience_grid">
+
+                        <div className="enterprise_project_experience_card">
+                            <div className="enterprise_project_experience_image_slider">
+                                <img
+                                    key={activeEdificacion}
+                                    src={edificacionImages[activeEdificacion]}
+                                    className="enterprise_project_experience_image"
+                                />
+
+                            </div>
+
+                            <h3>Edificaciones comerciales e institucionales</h3>
+                            <p>
+                                Instalaciones eléctricas, sanitarias y de comunicaciones
+                                integradas a la operación real del proyecto.
+                            </p>
+                        </div>
+
+                        <div className="enterprise_project_experience_card">
+                            <div className="enterprise_project_experience_image_slider">
+                                <img
+                                    key={activeTecnica}
+                                    src={tecnicaImages[activeTecnica]}
+                                    className="enterprise_project_experience_image"
+                                />
+                            </div>
+
+                            <h3>Proyectos industriales y técnicos</h3>
+                            <p>
+                                Ejecución bajo estándares de seguridad,
+                                control de calidad y validación técnica en cada etapa.
+                            </p>
+                        </div>
+
+                        <div className="enterprise_project_experience_card">
+                            <div className="enterprise_project_experience_image_slider">
+                                <img
+                                    key={activeInfra}
+                                    src={infraImages[activeInfra]}
+                                    className="enterprise_project_experience_image"
+                                />
+                            </div>
+
+                            <h3>Obras de infraestructura y ampliaciones</h3>
+                            <p>
+                                Intervenciones planificadas para asegurar continuidad operativa
+                                y compatibilidad con sistemas existentes.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+            {/* ================================ SECCION DE CTA EJECUTA =============================== */}
+            <section className="enterprise_level_project_engagement_call_to_action_section"
+                style={{ backgroundImage: `url(${FondoCTA})` }}
+            >
+                <div className="enterprise_level_project_engagement_call_to_action_overlay_layer">
+
+                    <div className="enterprise_level_project_engagement_call_to_action_content_container">
+
+                        <span className="enterprise_level_project_engagement_call_to_action_context_tag">
+                            Contacto
+                        </span>
+
+                        <h2 className="enterprise_level_project_engagement_call_to_action_primary_heading">
+                            ¿Conversamos tu proyecto antes de avanzar?
+                        </h2>
+
+                        <p className="enterprise_level_project_engagement_call_to_action_supporting_text">
+                            Si estás evaluando una intervención, una mejora o un nuevo proyecto,
+                            podemos ayudarte a definir el alcance, validar decisiones técnicas
+                            y estructurar una ejecución segura y eficiente.
+                        </p>
+
+                        <NavLink
+                            to="/contactos"
+                            className="enterprise_level_project_engagement_call_to_action_interactive_text_link"
+                        >
+                            Solicitar información
+                        </NavLink>
+
+                    </div>
+
+                </div>
+            </section>
+
+            {/* ================================ FOOTER SECCION INICIO ================================ */}
+            {/* <Footer /> */}
+        </>
+    );
+};
+
+export default Home;

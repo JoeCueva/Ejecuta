@@ -1,0 +1,285 @@
+:root {
+    --color-text: #1a1a1a;
+    --color-text-light: #4a4a4a;
+    --color-accent: #ee0613;
+    --color-bg-card: #ffffff;
+    --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.09);
+    --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@font-face {
+    font-family: 'mainText';
+    src: url('../../assets/fonts/Parkinsans-Medium.ttf');
+}
+
+.trust-section {
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
+    margin-top: -12vh;
+    text-align: center;
+    font-family: 'mainText';
+    padding: 0 20px;
+}
+
+.trust-content {
+    margin-bottom: 3.5rem;
+}
+
+.trust-content h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.trust-content p {
+    max-width: 880px;
+    margin: 0 auto;
+    padding-top: 15px;
+    font-size: 1.05rem;
+    color: var(--color-text-light);
+    line-height: 1.65;
+}
+
+.logo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 48px 32px;
+    align-items: center;
+    justify-items: center;
+    padding: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.marcas .logo-grid .logo-item:nth-child(13) {
+    grid-column: 2 / 3;
+}
+
+.marcas .logo-grid .logo-item:nth-child(14) {
+    grid-column: 3 / 4;
+}
+
+.marcas .logo-grid .logo-item:nth-child(15) {
+    grid-column: 4 / 5;
+}
+
+.marcas .logo-grid .logo-item:nth-child(16) {
+    grid-column: 5 / 6;
+}
+
+.logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.logo-item img {
+    max-width: 190px;
+    max-height: 70px;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.logo-item:hover {
+    opacity: 1;
+    transform: translateY(-6px);
+}
+
+.logo-item:hover img {
+    filter: grayscale(0%) brightness(1);
+}
+
+.coming-section {
+    font-family: 'mainText';
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marcas {
+    margin-top: 3vh;
+    width: 100%;
+}
+
+.coming-card {
+    max-width: 680px;
+    width: 100%;
+    background: var(--color-bg-card);
+    padding: 4rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.coming-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.marca-disclaimer {
+    color: var(--color-text-light);
+    margin: 20px auto;
+    font-size: 0.8rem;
+    max-width: 600px;
+}
+
+.coming-card h2 {
+    font-size: clamp(2.4rem, 6vw, 3.0rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+}
+
+.coming-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+    margin-bottom: 1.8rem;
+}
+
+.coming-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+.download-btn {
+    padding: 16px 48px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(238, 6, 19, 0.18);
+}
+
+.download-btn:hover {
+    background: #d00510;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(238, 6, 19, 0.26);
+}
+
+.marquee-wrapper {
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    animation: scroll 50s linear infinite;
+    width: max-content;
+}
+
+.marquee-item {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 40px;
+}
+
+.marquee-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.marquee-item:hover img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@media (max-width: 1024px) {
+    .trust-section {
+        padding: 80px 20px;
+    }
+
+    .coming-section {
+        padding: 100px 20px;
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Resetea el centrado en tablets */
+    .marcas .logo-grid .logo-item:nth-child(13),
+    .marcas .logo-grid .logo-item:nth-child(14),
+    .marcas .logo-grid .logo-item:nth-child(15),
+    .marcas .logo-grid .logo-item:nth-child(16) {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .coming-card {
+        padding: 3rem 1.8rem;
+    }
+
+    .marquee-item {
+        width: 150px;
+        margin: 0 30px;
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .trust-section {
+        margin-top: -45vh;
+    }
+
+    .coming-section {
+        margin-top: -20vh;
+        margin-bottom: 30vh;
+    }
+
+    .trust-section .marcas {
+    }
+
+    .download-btn {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .marquee-item {
+        width: 130px;
+        margin: 0 20px;
+    }
+
+    .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
