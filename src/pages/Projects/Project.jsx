@@ -29,7 +29,7 @@ import Marca14 from '../../assets/img/MarcaLogos/TuboPlast.png';
 import Marca15 from '../../assets/img/MarcaLogos/Wesco.png';
 import Marca16 from '../../assets/img/MarcaLogos/Promhil.png';
 
-import BrochurePDF from '../../assets/docs/BROCHURE_EJECUTA_CONTRUCCION_2026.pdf';
+import BrochurePDF from '../../assets/docs/BROCHURE_EJECUTA_CONSTRUCCION_2026.pdf';
 
 const Project = () => {
     const handleDownload = () => {
