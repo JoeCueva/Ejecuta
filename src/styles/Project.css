@@ -204,6 +204,31 @@
     transform: scale(1.1);
 }
 
+.download-btns {
+    margin-left: 10px;
+    padding: 16px 35px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(238, 6, 19, 0.18);
+}
+
+.download-btns:hover {
+    background: #d00510;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(238, 6, 19, 0.26);
+}
+
+.book-btn {
+    text-decoration: none;
+    color: var(--color-bg-card);
+}
+
 @keyframes scroll {
     from {
         transform: translateX(0);

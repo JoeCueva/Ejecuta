@@ -92,6 +92,13 @@ const Project = () => {
                     <button className="download-btn" onClick={handleDownload}>
                         Descargar Brochure
                     </button>
+
+                    <button className="download-btns">
+                        <a href="https://publuu.com/flip-book/1065050/2368349" className='book-btn' target="_blank">
+                            Ver Brochure Interactivo
+                        </a>
+                    </button>
+
                 </div>
             </section>
 
