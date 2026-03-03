@@ -94,7 +94,7 @@ const Project = () => {
                     </button>
 
                     <button className="download-btns">
-                        <a href="https://publuu.com/flip-book/1065050/2377444" className='book-btn' target="_blank">
+                        <a href="https://publuu.com/flip-book/1065050/2377476" className='book-btn' target="_blank">
                             Ver Brochure Interactivo
                         </a>
                     </button>
