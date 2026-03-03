@@ -56,14 +56,14 @@ const Footer = () => {
 
                     <div className="footer_column footer_column_contact_section">
                         <h3>Contacto</h3>
-                        <p><FaPhoneAlt /> +51 987 654 321</p>
-                        <p><FaEnvelope /> contacto@ejecuta.net.pe</p>
+                        <p><FaPhoneAlt /> +51 930 628 528</p>
+                        <p><FaEnvelope /> sistemas@ejecuta.net.pe</p>
                         <p><FaMapMarkerAlt /> Lima, Perú</p>
 
                         <div className="footer_contact_schedule_block">
                             <strong>Horario de atención</strong>
                             <span>Lunes a Viernes</span>
-                            <span>07:00 am – 06:00 pm</span>
+                            <span>08:00 am – 06:00 pm</span>
                         </div>
                     </div>
                 </div>

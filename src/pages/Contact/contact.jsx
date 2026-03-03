@@ -191,10 +191,10 @@ const Contact = () => {
 
                             <div className="enterprise_contact_request_direct_information_items_group">
                                 <span className="enterprise_contact_request_direct_information_item">
-                                    <i class="fa-solid fa-envelope"></i> postVenta@ejecuta.net.pe
+                                    <i class="fa-solid fa-envelope"></i> sistemas@ejecuta.net.pe
                                 </span>
                                 <span className="enterprise_contact_request_direct_information_item">
-                                    <i class="fa-solid fa-phone"></i> +51 987 654 321
+                                    <i class="fa-solid fa-phone"></i> +51 930 628 528
                                 </span>
                                 <span className="enterprise_contact_request_direct_information_item">
                                     <i class="fa-solid fa-location-dot"></i> Lima, Perú
