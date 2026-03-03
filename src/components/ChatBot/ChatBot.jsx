@@ -25,9 +25,9 @@ export default function EjecutaChatbot() {
                 addBotMessage(botData.welcome.greeting);
                 setTimeout(() => {
                     addBotMessage(botData.welcome.message);
-                    setTimeout(() => { addBotMessage(botData.welcome.cta); }, 1800);
-                }, 1800);
-            }, 500);
+                    setTimeout(() => { addBotMessage(botData.welcome.cta); }, 3800);
+                }, 3800);
+            }, 2500);
         }
     }, [open]);
 
@@ -102,7 +102,7 @@ export default function EjecutaChatbot() {
         addUserMessage(category.title);
         const responses = Object.values(category.responses);
         responses.forEach((response, index) => {
-            setTimeout(() => { addBotMessage(response, 1600); }, index * 1800);
+            setTimeout(() => { addBotMessage(response, 3600); }, index * 4000);
         });
     };
 
